@@ -53,37 +53,46 @@ function openOrHideSame(photo) {
 		height: newHeight
 	}, 500, function() {
 		happening = false;
+		if (!photo.parent().hasClass('opened')) {
+			photo.parent().removeAttr('style');
+		}
 	});
 }
 function openSameRow(photo, theOpen) {
-	happening = true;
-	photo.parent().animate({
-		height: photo.parent().height() - theOpen.outerHeight() + parseInt(theOpen.css('border-top'))
-	}, 500);
+	if (!happening) {
+		happening = true;
 
-	setTimeout(function() {
-		photo.next().show().siblings('section').hide();
-		photo.parent().animate({
-			height: photo.parent().height() + photo.next().outerHeight() - parseInt(theOpen.css('border-top'))
-		}, 500, function() {
-			happening = false;
-		});
-	}, 750);
+		photo.parent().append('<div id="border-fake" style="height: ' + parseInt(theOpen.css('border-top')) + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
+			height: photo.parent().height() - theOpen.outerHeight() + parseInt(theOpen.css('border-top'))
+		}, 500);
+
+		setTimeout(function() {
+			photo.next().show().siblings('section').hide();
+			photo.parent().animate({
+				height: photo.parent().height() + photo.next().outerHeight() - parseInt(theOpen.css('border-top'))
+			}, 500, function() {
+				happening = false;
+				$('#border-fake').remove();
+			});
+		}, 750);
+	}
 }
 function openDifferentRow(photo, theOpen) {
-	happening = true;
-	photo.next().show();
+	if (!happening) {
+		happening = true;
+		photo.next().show();
 
-	photo.parent().animate({
-		height: photo.parent().height() + photo.next().outerHeight()
-	}, 500);
+		photo.parent().addClass('opened').animate({
+			height: photo.parent().height() + photo.next().outerHeight()
+		}, 500);
 
-	theOpen.parent().animate({
-		height: theOpen.parent().height() - theOpen.outerHeight()
-	}, 500, function() {
-		theOpen.hide();
-		happening = false;
-	});
+		theOpen.parent().removeClass('opened').animate({
+			height: theOpen.parent().height() - theOpen.outerHeight()
+		}, 500, function() {
+			theOpen.hide().parent().removeAttr('style');
+			happening = false;
+		});
+	}
 }
 function theDescription(photo) {
 	if (!happening) {
@@ -104,9 +113,35 @@ function theDescription(photo) {
 	}
 }
 $('.restaurant-group').on('click', function(){
-	// console.log($(this).parent().hasClass('opened'));
 	theDescription($(this));
 });
+
+function closeDescription(closer) {
+	if (!happening) {
+		happening = true;
+		isOneOpen = false;
+		closer.closest('.row').removeClass('opened').animate({
+			height: closer.closest('.row').height() - closer.closest('section').outerHeight()
+		}, 500, function(){
+			closer.closest('section').hide();
+			happening = false;
+		});
+	}
+}
+$('.closer').click(function(){
+	closeDescription($(this));
+});
+
+var visibleDescription;
+function resizeDescription() {
+	var opened = $('.opened');
+	if (opened.length > 0) {
+		opened.css({
+			height: opened.find('section:visible').prev().outerHeight() + opened.find('section:visible').outerHeight()
+		});
+	}
+}
+$(window).on('resize', resizeDescription);
 
 });
 

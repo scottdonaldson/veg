@@ -231,6 +231,13 @@ section {
 	border-top: 16px solid #94BA6C;	
 }
 
+#border-fake {
+	/* height and position from top are calculated via JS */
+	background: #94BA6C;
+	width: 100%;
+	z-index: 2; /* must be higher than the section */
+}
+
 section h3 { 
 	float: left;
 }
@@ -240,6 +247,7 @@ section p {
 }
 
 .closer {
+	cursor: pointer;
 	display: block;
 	float: right;
 }
@@ -284,7 +292,7 @@ section p {
 }
 
 .restaurant-group:hover .photo {
-	opacity: .4;
+	opacity: 0.4;
 }
 
 .restaurant-group:hover .food-icon {
