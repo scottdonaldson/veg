@@ -23,8 +23,8 @@ var more = $('.more'),
 	bot, 
 	i = 0;
 function theDeets() {
-	bot = i%2 === 0 ? 80 : -600;
-	details.animate({
+	bot = details.hasClass('shown') ? -600 : 80;
+	details.toggleClass('shown').animate({
 		bottom: bot
 	});
 	i++;
@@ -124,6 +124,11 @@ function closeDescription(closer) {
 			height: closer.closest('.row').height() - closer.closest('section').outerHeight()
 		}, 500, function(){
 			closer.closest('section').hide();
+			happening = false;
+		});
+		closer.closest(details).removeClass('shown').animate({
+			bottom: -600
+		}, 500, function(){
 			happening = false;
 		});
 	}
