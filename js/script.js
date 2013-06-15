@@ -1,4 +1,25 @@
-jQuery(document).ready(function($){
+var header = $('header');
+
+$(window).load(function(){
+	var images = $('.restaurant-group'),
+		timeDelay;
+	images.each(function(){
+		timeDelay = Math.random() * 2000 + 1000;
+		$(this).delay(timeDelay).animate({
+			opacity: 1
+		}, 500);
+	});
+
+	header.animate({
+		opacity: 1
+	}, 500);
+
+	setTimeout(function(){
+		$('.intro').fadeOut(500);
+	}, 3000);
+});
+
+$(document).ready(function(){
 	
 // Showing "according to Parsley & Sprouts"		
 var hgroup = $('.hgroup'),
@@ -23,19 +44,29 @@ var more = $('.more'),
 	bot, 
 	i = 0;
 function theDeets() {
-	bot = details.hasClass('shown') ? -600 : 80;
+	bot = details.hasClass('shown') ? -600 : header.height();
 	details.toggleClass('shown').animate({
 		bottom: bot
 	});
 	i++;
+	more.toggleClass('shown');
 }
 more.click(theDeets);
+function posDeets() {
+	if (details.hasClass('shown')) {
+		details.css({
+			bottom: header.height()
+		});
+	}
+}
+$(window).on('resize', posDeets);
 
 // Showing descriptions for each photo
 var row = $('.row'),
 	isOneOpen = false,
 	newHeight,
 	theOpen,
+	pointer = $('<div class="pointer-container"><div class="pointer"></div></div>');
 	happening = false;
 $('section').hide();	
 function openOrHideSame(photo) {
@@ -57,6 +88,18 @@ function openOrHideSame(photo) {
 			photo.parent().removeAttr('style');
 		}
 	});
+
+	// Insert the pointer
+	if (photo.next().find('.pointer-container').length == 0) {
+		photo.next().prepend(pointer);
+		pointer.css({
+			left: photo.offset().left + 0.5 * (photo.width() - pointer.width())
+		});
+	} else {
+		setTimeout(function(){
+			pointer.remove();
+		}, 500);
+	}
 }
 function openSameRow(photo, theOpen) {
 	if (!happening) {
@@ -65,6 +108,17 @@ function openSameRow(photo, theOpen) {
 		photo.parent().append('<div id="border-fake" style="height: ' + parseInt(theOpen.css('border-top')) + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
 			height: photo.parent().height() - theOpen.outerHeight() + parseInt(theOpen.css('border-top'))
 		}, 500);
+
+		pointer.appendTo(photo.parent()).css({
+			top: photo.outerHeight() + parseInt(theOpen.css('border-top'))
+		}).delay(500).animate({
+			left: photo.offset().left + 0.5 * photo.width() - 40
+		}, 1000, function(){
+			photo.next().prepend(pointer);
+			pointer.css({
+				top: 0
+			});
+		});
 
 		setTimeout(function() {
 			photo.next().show().siblings('section').hide();
@@ -75,6 +129,7 @@ function openSameRow(photo, theOpen) {
 				$('#border-fake').remove();
 			});
 		}, 750);
+		
 	}
 }
 function openDifferentRow(photo, theOpen) {

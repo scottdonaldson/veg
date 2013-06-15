@@ -36,6 +36,10 @@ h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 	position: relative;
 }
 
+html {
+	background: #2F2F35;
+}
+
 /*---for structuring emz------*/
 body {
 	font-size: 36px;
@@ -101,9 +105,14 @@ section h3 {
 }
 
 .plus {
+	-webkit-transition: 0.333s;
+	-moz-transition: 0.333s;
+	-ms-transition: 0.333s;
+	-o-transition: 0.333s;
+	transition: 0.333s;
 	width: .94em;
 }
-
+/*
 .more:hover .plus {
 	animation: wiggle .5s;
 	-webkit-animation: wiggle .5s;
@@ -116,6 +125,21 @@ section h3 {
 		25% { -webkit-transform: rotate(10deg);  }
 		75%{ -webkit-transform: rotate(-10deg);  }
 	}
+	*/
+
+.more.shown .plus {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.more.shown:hover .plus {
+	-webkit-animation: none !important;
+	-o-animation: none !important;
+	animation: none !important;
+}
 	
 @font-face {
     font-family: 'sofia_pro_lightregular';
@@ -176,7 +200,7 @@ section h3 {
 }
 
 .intro {
-	position: absolute;
+	position: fixed;
 	z-index: 11;
 	width: 60%;
 	left: 20%;
@@ -185,6 +209,7 @@ section h3 {
 header {
 	background-color: #D16565;
 	bottom: 0;
+	opacity: 0; /* fades in on load via JS */
 	height: 2.2em;
 	left: 0;
 	padding: 0 10% 0 10%;
@@ -283,6 +308,7 @@ h2 {
 
 .more { 
 	background-color: #94BA6C;
+	cursor: pointer;
 	display: block;
 	height: 2.2em;
 	width: 2.2em;
@@ -307,6 +333,10 @@ h2 {
 }
 
 
+.row {
+	overflow: visible;
+}
+
 section {
 	position: absolute;
 	background-color: #2F2F35;
@@ -322,6 +352,29 @@ section {
 	background: #94BA6C;
 	width: 100%;
 	z-index: 2; /* must be higher than the section */
+}
+
+.pointer-container { /* prevents the part of the pointer that overflows from being shown */
+	height: 50px;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 80px;
+	z-index: 10; /* like border-fake, must be higher than the section, but also higher than restaurant-group */
+}
+
+.pointer {
+	background: #94BA6C;
+	border: 1px solid #2F2F35;
+	height: 50px;
+	margin: 0 auto;
+	top: -25px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	width: 50px;
 }
 
 section h3 { 
@@ -350,6 +403,7 @@ section h3 {
 .restaurant-group {
 	background: #2F2F35;
 	border: 1px solid #2F2F35;
+	opacity: 0; /* fades in on load with JS */
 	float: left;
 	width: 33.333%;
 	z-index: 2;

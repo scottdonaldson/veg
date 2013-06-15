@@ -19,29 +19,41 @@
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+
     
 </head>
 
 <body>
+
 	<!--[if lt IE 7]>
         <p class="chromeframe">Your browser is ancient. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
+
+    <div class="intro">
+        <img src="images/skyline.png">
+        <script>
+        var intro = document.getElementsByClassName('intro')[0];
+        function posIntro() {
+            // skyline image is 41% as tall as it is wide
+            intro.style.top = 0.5 * (window.innerHeight - 0.41 * intro.clientWidth) + 'px';
+        };
+        posIntro();
+        window.addEventListener('resize', posIntro);
+        </script>
+    </div>
   
     <div id="main">
     	
         <header>
             <div class="hgroup">
                 <h1>Best Vegetarian Restaurants in the Twin Cities</h1> 
-                <h2>according to Parsley & Sprouts</h2>
+                <h2>according to Parsley &amp; Sprouts</h2>
             </div>
             <div class="more">
                 <a><img class="plus" src="images/plus.png"></a>
             </div>
         </header>
-        
-        <div class="intro">
-        <img src="images/skyline.png">
-        </div>
     
         <div class="row clearfix">    
             <div class="restaurant-group">
