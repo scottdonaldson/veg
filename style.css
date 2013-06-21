@@ -21,6 +21,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 /* COLOR GUIDE
   
 #2F2F35		grey
+#232328		dark grey
 #D16565     pink
 #EDECE2		cream
 #94BA6C		green
@@ -37,7 +38,7 @@ h1, h2, h3, h4, h5, h6 { font-weight: normal; }
 }
 
 html {
-	background: #2F2F35;
+	background: #232328;
 }
 
 /*---for structuring emz------*/
@@ -110,9 +111,9 @@ section h3 {
 	-ms-transition: 0.333s;
 	-o-transition: 0.333s;
 	transition: 0.333s;
-	width: .94em;
+	width: .9em;
 }
-/*
+
 .more:hover .plus {
 	animation: wiggle .5s;
 	-webkit-animation: wiggle .5s;
@@ -125,7 +126,7 @@ section h3 {
 		25% { -webkit-transform: rotate(10deg);  }
 		75%{ -webkit-transform: rotate(-10deg);  }
 	}
-	*/
+
 
 .more.shown .plus {
 	-webkit-transform: rotate(45deg);
@@ -214,7 +215,6 @@ header {
 	left: 0;
 	padding: 0 10% 0 10%;
 	position: absolute;
-	overflow: hidden;
 	width: 100%;
 	z-index: 10;
 }
@@ -332,11 +332,6 @@ h2 {
 	width: 50%;
 }
 
-
-.row {
-	overflow: visible;
-}
-
 section {
 	position: absolute;
 	background-color: #2F2F35;
@@ -366,7 +361,7 @@ section {
 .pointer {
 	background: #94BA6C;
 	border: 1px solid #2F2F35;
-	height: 50px;
+	height: 36px;
 	margin: 0 auto;
 	top: -25px;
 	-webkit-transform: rotate(45deg);
@@ -374,31 +369,8 @@ section {
 	-ms-transform: rotate(45deg);
 	-o-transform: rotate(45deg);
 	transform: rotate(45deg);
-	width: 50px;
+	width: 36px;
 }
-
-section h3 { 
-	display: inline;
-}
-
-.closer {
-	cursor: pointer;
-	display: block;
-	float: right;
-}
-
-.icon-close-bite { 
-	display: none;
-}
-
-.closer:hover .icon-close{
-	display: none;
-}
-
-.closer:hover .icon-close-bite {
-	display: block;
-}
-	
 
 .restaurant-group {
 	background: #2F2F35;
@@ -436,6 +408,28 @@ section h3 {
 
 /*  -------------- responsive  --------------  */
 
+
+
+@media screen and (min-width: 1500px) {
+	
+	body {
+		font-size: 40px;
+	}
+	
+	.row {
+		width: 1500px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.photo {
+		width: 500px;
+	
+	}
+	
+}
+
+
 @media screen and (max-width: 1065px) {
 	
 	body {
@@ -467,7 +461,7 @@ section h3 {
 
 }
 
-@media screen and (max-width: 640px) {	
+@media screen and (max-width: 600px) {	
 	
 	p {
 		font-size: 16px;
@@ -497,6 +491,15 @@ section h3 {
 	.restaurant-group {
 		width: 100%;
 	}
+	
+	.more {
+		position: absolute;
+		bottom: 2.2em;
+		left: 0;
+		width: 100%;
+		z-index: 13;
+	}
+		
 	
 }
 
