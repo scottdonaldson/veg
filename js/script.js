@@ -86,9 +86,6 @@ var row = $('.row'),
 	theOpen,
 	pointer = $('<div class="pointer-container"><div class="pointer"></div></div>');
 	happening = false;
-// all sections are hidden behind the photos, but actually HIDE them now,
-// since we use conditional logic to see whether one is visible or not
-$('section').hide();
 
 // function to open or hide the same one when it is clicked on
 function openOrHideSame(photo) {
@@ -237,7 +234,6 @@ function theSmallDescription(photo) {
 }
 
 $('.restaurant-group').click(function(){
-	console.log($('.opened').length);
 	if (!happening) {
 		if ($(window).width() > 600) {
 			theDescription($(this));
