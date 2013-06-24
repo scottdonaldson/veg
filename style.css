@@ -394,6 +394,17 @@ section {
 	width: 36px;
 }
 
+	.lt-ie9 .pointer {
+		background: transparent;
+		border-left: 25px solid transparent;
+		border-right: 25px solid transparent;
+		border-top: 25px solid #94BA6C;
+		border-bottom: 0;
+		height: 0;
+		width: 0;
+		top: 0;
+	}
+
 .restaurant-group {
 	background: #2F2F35;
 	border: 1px solid #2F2F35;
@@ -425,7 +436,8 @@ section {
 	margin-top: 50%;
 	top: -50px;
 	margin-left: 50%;
-	left:-50px;
+	left: -50px;
+	filter: alpha(opacity=0);
 	opacity: 0;
 	-webkit-transition: opacity 0.25s;
 	-moz-transition: opacity 0.25s;
@@ -435,10 +447,12 @@ section {
 }
 
 .restaurant-group:hover .photo {
+	filter: alpha(opacity=40);
 	opacity: 0.4;
 }
 
 .restaurant-group:hover .food-icon {
+	filter: alpha(opacity=100);
 	opacity: 1;
 }
 
