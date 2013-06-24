@@ -257,7 +257,8 @@ window.addEventListener('keydown', function(e) {
 			} else {
 				smallScreenClose(opened.find('section:visible').prev());
 			}
-		} else if (details.hasClass('shown')) {
+		}
+		if (details.hasClass('shown')) {
 			theDeets();
 		}
 	}
