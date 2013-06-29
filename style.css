@@ -116,7 +116,7 @@ section h3 {
 	width: .9em;
 }
 
-.more:hover .plus {
+.more.hovered .plus {
 	animation: wiggle .5s;
 	-webkit-animation: wiggle .5s;
 	-moz-animation: wiggle .5s;
@@ -167,7 +167,7 @@ section h3 {
 	font-style: normal;
 }
 
-.icon-plus, .icon-minus, .icon-close-bite, .icon-close, .icon-arrow {
+.icon-plus, .icon-minus, .icon-arrow {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -182,12 +182,6 @@ section h3 {
 }
 .icon-minus:before {
 	content: "\e002";
-}
-.icon-close-bite:before {
-	content: "\e003";
-}
-.icon-close:before {
-	content: "\e000";
 }
 .icon-arrow:before {
 	content: "\e004";
@@ -225,6 +219,7 @@ section h3 {
 header {
 	background-color: #D16565;
 	bottom: 0;
+	filter: alpha(opacity=0);
 	opacity: 0; /* fades in on load via JS */
 	height: 2.2em;
 	left: 0;
@@ -408,6 +403,7 @@ section {
 .restaurant-group {
 	background: #2F2F35;
 	border: 1px solid #2F2F35;
+	filter: alpha(opacity=0);
 	opacity: 0; /* fades in on load with JS */
 	overflow: hidden;
 	float: left;
@@ -446,12 +442,22 @@ section {
 	transition: opacity 0.25s;
 }
 
+<<<<<<< HEAD
 .restaurant-group:hover .photo {
+=======
+.no-touch .restaurant-group:hover .photo,
+.touch .restaurant-group.mobile-active .photo {
+>>>>>>> mobile fixes
 	filter: alpha(opacity=40);
 	opacity: 0.4;
 }
 
+<<<<<<< HEAD
 .restaurant-group:hover .food-icon {
+=======
+.no-touch .restaurant-group:hover .food-icon,
+.touch .restaurant-group.mobile-active .food-icon {
+>>>>>>> mobile fixes
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
@@ -514,6 +520,10 @@ section {
 }
 
 @media screen and (max-width: 600px) {	
+
+	#main {
+		padding-bottom: 4.4em; /* since .more stacks on top of header */
+	}
 	
 	p {
 		font-size: 16px;
@@ -547,6 +557,20 @@ section {
 		left: 0 !important; 
 		width: 100% !important;
 	}
+
+		.touch .restaurant-group:after {
+			background: #2F2F35;
+			bottom: 0;
+			color: #94BA6C;
+			content: '+';
+			display: block;
+			height: 2em;
+			line-height: 2em;
+			position: absolute;
+			text-align: center;
+			right: 0;
+			width: 2em;
+		}
 
 	section {
 		bottom: auto;

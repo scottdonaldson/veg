@@ -5,18 +5,19 @@ var header = $('header'),
 $(window).load(function(){
 	$('.restaurant-group').each(function(){
 		$(this).delay(4 * delay * Math.random() + 1000).animate({
+			filter: 'alpha(opacity=100)',
 			opacity: 1
 		}, delay);
 	});
-
-	header.animate({
-		opacity: 1
-	}, delay);
 
 	setTimeout(function(){
 		$('.intro').fadeOut(delay, function(){
 			$('.cover').remove();
 		});
+		header.animate({
+			filter: 'alpha(opacity=100)',
+			opacity: 1
+		}, delay);
 	}, 4 * delay + 1000);
 });
 
@@ -44,6 +45,17 @@ var more = $('.more'),
 	details = $('.details'),
 	bot, 
 	i = 0;
+// add a class of 'hovered' to set .more a-jigglin',
+// then remove it after the transition is done
+more.mouseenter(function(){
+	if (!more.hasClass('hovered')) {
+		more.addClass('hovered');
+		setTimeout(function(){
+			more.removeClass('hovered');
+		}, 500);
+	}
+});
+// function to show/hide the details
 function theDeets() {
 	var opened = $('.opened');
 	if (opened.length > 0 && !details.hasClass('shown')) {
@@ -62,7 +74,16 @@ function theDeets() {
 	details.toggleClass('shown').animate({
 		bottom: bot
 	});
-	i++;
+
+	// IE8 can't handle the plus to X transition, so use minus instead
+	if ($('html').hasClass('lt-ie9')) {
+		if (!more.hasClass('shown')) {
+			more.find('img').attr('src', 'images/close.png');
+		} else {
+			more.find('img').attr('src', 'images/plus.png');
+		}
+	}
+	
 	more.toggleClass('shown');
 }
 more.click(theDeets);
@@ -106,7 +127,7 @@ function openOrHideSame(photo) {
 		}, delay);
 	}
 
-	photo.next().show().siblings('section').hide();
+	photo.toggleClass('mobile-active').next().show().siblings('section').hide();
 	photo.parent().toggleClass('opened').animate({
 		height: newHeight
 	}, delay, function() {
@@ -121,7 +142,7 @@ function openOrHideSame(photo) {
 // If we click on a different photo in the same row
 function openSameRow(photo, theOpen) {
 
-	photo.parent().append('<div id="border-fake" style="height: ' + parseInt(theOpen.css('border-top')) + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
+	photo.addClass('mobile-active').parent().append('<div id="border-fake" style="height: ' + parseInt(theOpen.css('border-top')) + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
 		height: photo.parent().height() - theOpen.outerHeight() + 40
 	}, delay);
 
@@ -149,7 +170,7 @@ function openSameRow(photo, theOpen) {
 
 // If we click on a photo in a different row
 function openDifferentRow(photo, theOpen) {
-	photo.next().show();
+	photo.addClass('mobile-active').next().show();
 
 	photo.parent().addClass('opened').animate({
 		height: photo.parent().height() + photo.next().outerHeight()
@@ -160,7 +181,7 @@ function openDifferentRow(photo, theOpen) {
 		left: photo.offset().left + 0.5 * (photo.width() - pointer.width())
 	});
 
-	theOpen.parent().removeClass('opened').animate({
+	theOpen.removeClass('mobile-active').parent().removeClass('opened').animate({
 		height: theOpen.parent().height() - theOpen.outerHeight()
 	}, delay, function() {
 		theOpen.hide().parent().removeAttr('style');
@@ -190,7 +211,8 @@ function theDescription(photo) {
 // functions for small screens.
 // First, just showing one
 function smallScreenShow(photo) {
-	photo.parent().addClass('opened').siblings().removeClass('opened');
+	photo.addClass('mobile-active');
+	photo.parent().addClass('opened').siblings('.row').removeClass('opened');
 	photo.next().prepend(pointer);
 
 	photo.animate({
@@ -207,7 +229,7 @@ function smallScreenShow(photo) {
 // closing one
 function smallScreenClose(photo) {
 	pointer.remove();
-	photo.animate({
+	photo.removeClass('mobile-active').animate({
 		marginBottom: 0
 	}, delay);
 	photo.next().animate({
@@ -235,15 +257,17 @@ function theSmallDescription(photo) {
 
 $('.restaurant-group').click(function(){
 	if (!happening) {
+		if (details.hasClass('shown')) {
+			theDeets();
+		}
+
 		if ($(window).width() > 600) {
 			theDescription($(this));
 		} else {
 			// small screens here
 			theSmallDescription($(this));
 		}
-		if (details.hasClass('shown')) {
-			theDeets();
-		}
+		
 	}
 });
 

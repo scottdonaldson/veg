@@ -8,6 +8,7 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
     
     <title>Best Vegetarian Restaurants in the Twin Cities</title>
 
@@ -19,30 +20,28 @@
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
-
-
     
 </head>
 
 <body>
 
-	<!--[if lt IE 7]>
+	<!--[if lt IE 8]>
         <p class="chromeframe">Your browser is ancient. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
     <![endif]-->
 
     <div class="intro">
         <img src="images/skyline.png">
-        <script>
+    </div>
+    <script>
         var intro = document.getElementsByClassName('intro')[0];
         function posIntro() {
             // skyline image is 41% as tall as it is wide
-            intro.style.top = 0.5 * (window.innerHeight - 0.41 * intro.clientWidth) + 'px';
+            intro.style.top = window.innerHeight != undefined ? 0.5 * (window.innerHeight - 0.41 * intro.clientWidth) + 'px' : 0.5 * (document.documentElement.clientHeight - 0.41 * intro.clientWidth) + 'px';
         };
         posIntro();
         window.addEventListener('resize', posIntro);
-        </script>
-    </div>
-  
+    </script>  
+
     <div id="main">
     	
         <header>
