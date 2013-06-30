@@ -68,9 +68,9 @@ function theDeets() {
 	}
 
 	if ($(window).width() > breakPoint) {
-		bot = details.hasClass('shown') ? -600 : header.height();
+		bot = details.hasClass('shown') ? -1000 : header.height();
 	} else {
-		bot = details.hasClass('shown') ? -600 : header.height() + more.height()
+		bot = details.hasClass('shown') ? -1000 : header.height() + more.height()
 	}
 	details.toggleClass('shown').animate({
 		bottom: bot
@@ -91,7 +91,7 @@ function posDeets() {
 	} else if (details.hasClass('shown') && $(window).width() <= breakPoint) {
 		bot = header.height() + more.height();
 	} else {
-		bot = -600;
+		bot = -1000;
 	}
 	details.css({
 		bottom: bot
@@ -260,7 +260,7 @@ $('.restaurant-group').click(function(){
 			theDeets();
 		}
 
-		if ($(window).width() > 600) {
+		if ($(window).width() > breakPoint) {
 			theDescription($(this));
 		} else {
 			// small screens here
