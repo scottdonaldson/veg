@@ -116,7 +116,7 @@ function openOrHideSame(photo) {
 	if (photo.next().find('.pointer-container').length == 0) {
 		photo.next().prepend(pointer);
 		pointer.css({
-			left: photo.offset().left + 0.5 * (photo.width() - pointer.width())
+			left: photo.offset().left - photo.parent().offset().left + 0.5 * (photo.width() - pointer.width())
 		});
 	} else {
 		setTimeout(function(){
@@ -148,7 +148,7 @@ function openSameRow(photo, theOpen) {
 	pointer.appendTo(photo.parent()).css({
 		top: photo.outerHeight() + borderTop
 	}).animate({
-		left: photo.offset().left + 0.5 * photo.width() - 40
+		left: photo.offset().left - photo.parent().offset().left + 0.5 * photo.width() - 40
 	}, delay * 2, function(){
 		photo.next().prepend(pointer);
 		pointer.css({

@@ -207,6 +207,10 @@ section h3 {
 		max-width: 100%;
 	}
 
+	.lt-ie9 .intro {
+		top: 200px;
+	}
+
 .cover {
 	position: fixed;
 	height: 100%;
@@ -442,22 +446,16 @@ section {
 	transition: opacity 0.25s;
 }
 
-<<<<<<< HEAD
-.restaurant-group:hover .photo {
-=======
+
+
 .no-touch .restaurant-group:hover .photo,
 .touch .restaurant-group.mobile-active .photo {
->>>>>>> mobile fixes
 	filter: alpha(opacity=40);
 	opacity: 0.4;
 }
 
-<<<<<<< HEAD
-.restaurant-group:hover .food-icon {
-=======
 .no-touch .restaurant-group:hover .food-icon,
 .touch .restaurant-group.mobile-active .food-icon {
->>>>>>> mobile fixes
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
