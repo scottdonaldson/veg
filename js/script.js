@@ -56,6 +56,7 @@ more.mouseenter(function(){
 	}
 });
 // function to show/hide the details
+var src;
 function theDeets() {
 	var opened = $('.opened');
 	if (opened.length > 0 && !details.hasClass('shown')) {
@@ -77,11 +78,8 @@ function theDeets() {
 
 	// IE8 can't handle the plus to X transition, so use minus instead
 	if ($('html').hasClass('lt-ie9')) {
-		if (!more.hasClass('shown')) {
-			more.find('img').attr('src', 'images/close.png');
-		} else {
-			more.find('img').attr('src', 'images/plus.png');
-		}
+		src = !more.hasClass('shown') ? 'images/close.png' : 'images/plus.png';
+		more.find('img').attr('src', src);
 	}
 	
 	more.toggleClass('shown');
@@ -90,7 +88,7 @@ more.click(theDeets);
 function posDeets() {
 	if (details.hasClass('shown') && $(window).width() > breakPoint) {
 		bot = header.height();
-	} else if ($(window).width() <= breakPoint) {
+	} else if (details.hasClass('shown') && $(window).width() <= breakPoint) {
 		bot = header.height() + more.height();
 	} else {
 		bot = -600;
