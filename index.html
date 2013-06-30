@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
     
 </head>
 
@@ -36,7 +36,7 @@
         var intro = document.getElementsByClassName('intro')[0];
         function posIntro() {
             // skyline image is 41% as tall as it is wide
-            intro.style.top = window.innerHeight != undefined ? 0.5 * (window.innerHeight - 0.41 * intro.clientWidth) + 'px' : 0.5 * (document.documentElement.clientHeight - 0.41 * intro.clientWidth) + 'px';
+            intro.style.top = 0.5 * (window.innerHeight - 0.41 * intro.clientWidth) + 'px';
         };
         posIntro();
         window.addEventListener('resize', posIntro);
