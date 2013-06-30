@@ -140,14 +140,15 @@ function openOrHideSame(photo) {
 }
 
 // If we click on a different photo in the same row
+var borderTop = 16; // the px width of the section's border-top
 function openSameRow(photo, theOpen) {
 
-	photo.addClass('mobile-active').parent().append('<div id="border-fake" style="height: ' + parseInt(theOpen.css('border-top')) + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
+	photo.addClass('mobile-active').parent().append('<div id="border-fake" style="height: ' + borderTop + 'px;  top: ' + (photo.height() + 2) + 'px;"></div>').animate({
 		height: photo.parent().height() - theOpen.outerHeight() + 40
 	}, delay);
 
 	pointer.appendTo(photo.parent()).css({
-		top: photo.outerHeight() + parseInt(theOpen.css('border-top'))
+		top: photo.outerHeight() + borderTop
 	}).animate({
 		left: photo.offset().left + 0.5 * photo.width() - 40
 	}, delay * 2, function(){
