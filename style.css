@@ -52,9 +52,25 @@ h1, h2, h3, p {
 	font-family: 'sofia_pro_lightregular', Helvetica, Arial, sans-serif; 
 }
 
+
+h1, h2 { 
+	color: #2F2F35;
+	font-size: 1em;
+}
+
+
 h3 {
 	margin: 0;
 }
+	
+section h3 {
+	font-size: 30px;
+	margin-bottom: 22px;
+}
+
+	section h3 a, section h3 a:hover {
+		color: #EDECE2;
+	}		
 
 p {
 	color: #EDECE2;
@@ -71,24 +87,10 @@ a {
 	text-decoration: none;
 }
 
-.details a:hover {
-	color: #D16565;
-}
-	
-h1, h2 { 
-	color: #2F2F35;
-	font-size: 1em;
-}
-	
-section h3 {
-	font-size: 30px;
-	margin-bottom: 22px;
-}
-
-	section h3 a{
-		color: #EDECE2;
+	a:hover {
+		color: #D16565;
 	}
-
+	
 .icon-arrow {
 	color: #D16565;
 	font-size: 13px;
@@ -98,14 +100,7 @@ section h3 {
 
 	a:hover .icon-arrow{
 		color: #94BA6C;
-	}
-	
-
-.icon-close, .icon-close-bite {
-	font-size: 32px;
-	padding: 10px 0px 0px 0px;
-	margin: 0;
-}
+	}	
 
 .plus {
 	-webkit-transition: 0.333s;
@@ -116,34 +111,51 @@ section h3 {
 	width: .9em;
 }
 
-.more.hovered .plus {
-	animation: wiggle .5s;
-	-webkit-animation: wiggle .5s;
-	-moz-animation: wiggle .5s;
-	-ms-animation: wiggle .5s;
-}
-
-	@-webkit-keyframes wiggle {
-		0%,100% { -webkit-transform: rotate(0deg); }
-		25% { -webkit-transform: rotate(10deg);  }
-		75%{ -webkit-transform: rotate(-10deg);  }
+	.more.hovered .plus {
+		animation: wiggle .5s;
+		-webkit-animation: wiggle .5s;
+		-moz-animation: wiggle .5s;
+		-o-animation: wiggle .5s;
 	}
 
+		@-webkit-keyframes wiggle {
+			0%,100% { -webkit-transform: rotate(0deg); }
+			25% { -webkit-transform: rotate(10deg);  }
+			75%{ -webkit-transform: rotate(-10deg);  }
+		}
+		
+		@-moz-keyframes wiggles {
+			0%,100% { -moz-transform: rotate(0deg); }
+			25% { -moz-transform: rotate(10deg);  }
+			75%{ -moz-transform: rotate(-10deg);  }
+		}
+		
+		@-o-keyframes wiggles {
+			0%,100% { -o-transform: rotate(0deg); }
+			25% { -o-transform: rotate(10deg);  }
+			75%{ -o-transform: rotate(-10deg);  }
+		}
+		
+		@keyframes wiggles {
+			0%,100% { transform: rotate(0deg); }
+			25% { transform: rotate(10deg);  }
+			75%{ transform: rotate(-10deg);  }
+		}
 
-.more.shown .plus {
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
+	.more.shown .plus {
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
 
-.more.shown:hover .plus {
-	-webkit-animation: none !important;
-	-o-animation: none !important;
-	animation: none !important;
-}
-	
+	.more.shown:hover .plus {
+		-webkit-animation: none !important;
+		-o-animation: none !important;
+		animation: none !important;
+	}
+		
 @font-face {
     font-family: 'sofia_pro_lightregular';
     src: url('fonts/SofiaProLight-webfont.eot');
@@ -167,7 +179,7 @@ section h3 {
 	font-style: normal;
 }
 
-.icon-plus, .icon-minus, .icon-arrow {
+.icon-arrow {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -177,12 +189,7 @@ section h3 {
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
 }
-.icon-plus:before {
-	content: "\e001";
-}
-.icon-minus:before {
-	content: "\e002";
-}
+
 .icon-arrow:before {
 	content: "\e004";
 }
@@ -227,7 +234,7 @@ header {
 	opacity: 0; /* fades in on load via JS */
 	height: 2.2em;
 	left: 0;
-	padding: 0 10% 0 10%;
+	padding: 0 10%;
 	position: absolute;
 	width: 100%;
 	z-index: 10;
@@ -237,10 +244,9 @@ header {
 h1, h2 {
 	left: 0;
 	margin: 0;
-	padding-top: 14px;
+	padding-top: 0.39em;
 	position: absolute;
 	top: 0;
-
 }	
 
 h2 {
@@ -251,7 +257,6 @@ h2 {
 	animation:  headline 2s;
 	-webkit-animation: headline 2s;
 	-moz-animation: headline 2s;
-	-ms-animation: headline 2s;
 	-o-animation: headline 2s;
 }
 	
@@ -274,7 +279,7 @@ h2 {
 	   100% { top: 0; }
 	}
 	
-	@-ms-keyframes headline {
+	@-o-keyframes headline {
 	   0% { top: 0; }
 	   33%, 66% { top: 2.2em; }
 	   100% { top: 0; }
@@ -285,7 +290,6 @@ h2 {
 	animation:  subhead 2s;
 	-webkit-animation: subhead 2s;
 	-moz-animation: subhead 2s;
-	-ms-animation: subhead 2s;
 	-o-animation: subhead 2s;
 }
 
@@ -303,12 +307,6 @@ h2 {
 	}
 	
 	@-moz-keyframes subhead {
-		0% { top: 2.2em; }
-		40%, 60% { top: 0; }
-		100% { top: 2.2em; }
-	}
-	
-	@-ms-keyframes subhead {
 		0% { top: 2.2em; }
 		40%, 60% { top: 0; }
 		100% { top: 2.2em; }
@@ -335,16 +333,16 @@ h2 {
 	background-color: #2F2F35;
 	bottom: -600px;
 	position: absolute;
-	margin: 0 10% 0 10%;
+	margin: 0 10%;
 	padding: 3% 6%;
 	z-index: 9;
 }
 
-.details img {
-	display: block;
-	margin: 0 auto;
-	width: 50%;
-}
+	.details img {
+		display: block;
+		margin: 0 auto;
+		width: 50%;
+	}
 
 section {
 	background-color: #2F2F35;
@@ -352,7 +350,7 @@ section {
 	bottom: 0;
 	display: none;
 	position: absolute;
-	padding: 3% 10%;
+	padding: 5% 10% 3% 10%;
 	left: 0;
 	z-index: 1;
 }
@@ -371,7 +369,7 @@ section {
 }
 
 .pointer-container { /* prevents the part of the pointer that overflows from being shown */
-	height: 50px;
+	height: 17px;
 	overflow: hidden;
 	position: absolute;
 	top: 0;
@@ -379,30 +377,30 @@ section {
 	z-index: 10; /* like border-fake, must be higher than the section, but also higher than restaurant-group */
 }
 
-.pointer {
-	background: #94BA6C;
-	border: 1px solid #2F2F35;
-	height: 36px;
-	margin: 0 auto;
-	top: -25px;
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-	width: 36px;
-}
-
-	.lt-ie9 .pointer {
-		background: transparent;
-		border-left: 25px solid transparent;
-		border-right: 25px solid transparent;
-		border-top: 25px solid #94BA6C;
-		border-bottom: 0;
-		height: 0;
-		width: 0;
-		top: 0;
+	.pointer {
+		background: #94BA6C;
+		border: 1px solid #2F2F35;
+		height: 36px;
+		margin: 0 auto;
+		top: -25px;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+		width: 36px;
 	}
+	
+		.lt-ie9 .pointer {
+			background: transparent;
+			border-left: 25px solid transparent;
+			border-right: 25px solid transparent;
+			border-top: 25px solid #94BA6C;
+			border-bottom: 0;
+			height: 0;
+			width: 0;
+			top: 0;
+		}
 
 .restaurant-group {
 	background: #2F2F35;
@@ -446,8 +444,6 @@ section {
 	transition: opacity 0.25s;
 }
 
-
-
 .no-touch .restaurant-group:hover .photo,
 .touch .restaurant-group.mobile-active .photo {
 	filter: alpha(opacity=40);
@@ -461,15 +457,27 @@ section {
 }
 
 
-
 /*  -------------- responsive  --------------  */
-
 
 
 @media screen and (min-width: 1500px) {
 	
 	body {
 		font-size: 40px;
+	}
+	
+	header {
+		width: 1500px;
+		left: 50%;
+		margin-left: -750px;
+		padding: 0 150px;
+	}
+	
+	.details {
+		width: 1200px;
+		left: 50%;
+		margin-left: -600px;
+		padding: 36px 100px;
 	}
 	
 	.row {
@@ -480,11 +488,9 @@ section {
 	
 	.photo {
 		width: 500px;
-	
 	}
 	
 }
-
 
 @media screen and (max-width: 1065px) {
 	
@@ -494,9 +500,7 @@ section {
 	
 }
 
-
 @media screen and (max-width: 900px) {
-	
 	
 	body { 
 		font-size: 24px;	
@@ -505,48 +509,69 @@ section {
 	.details img {
 		width: 80%;
 	}
+
 }
-
-
 
 @media screen and (max-width: 700px) {	
 
 	body { 
-		font-size: 22px;	
+		font-size: 20px;	
 	}
-
+	
 }
 
 @media screen and (max-width: 600px) {	
 
+	body { 
+		font-size: 16px;	
+	}
+	
 	#main {
-		padding-bottom: 4.4em; /* since .more stacks on top of header */
+		padding-bottom: 6.39em; /* since .more stacks on top of header */
 	}
 	
 	p {
 		font-size: 16px;
 	}
 	
-	section h3 {
-		font-size: 26px;
-		margin-bottom: 20px;
+	.intro {
+		position: fixed;
+		z-index: 11;
+		width: 80%;
+		left: 10%;
 	}
 	
-	
-	.icon-arrow {
-		color: #D16565;
-		font-size: 10px;
-	}
-
-	.icon-close, .icon-close-bite {
-		font-size: 30px;
-		padding-top: 4px;
-		
+	header {
+		padding: 0% 6%;
+		height: 3.2em;
 	}
 	
-	.details img {
-		width: 90%;
+	h1, h2 {
+		padding-top: 1.0em;
 	}
+	
+	.more {
+		position: absolute;
+		/*sliighty less than 2.7 to cover pixel rounding creating gap*/
+		bottom: 3.19em;
+		left: 0;
+		width: 100%;
+		z-index: 13;
+		height: 3.2em;
+		padding-top: 0.8em;
+	}
+	
+	.plus {
+		width: 1.1em;
+	}
+	
+	.details {
+		margin: 0% 6%;
+	}
+	
+		.details img {
+			width: 90%;
+		}
 	
 	.row,
 	.restaurant-group,
@@ -557,37 +582,42 @@ section {
 	}
 
 		.touch .restaurant-group:after {
-			background: #2F2F35;
+			background: #2F2F35 url(images/plus-green.png) 1em 1em no-repeat;
+			background-size: 1em 1em;
 			bottom: 0;
 			color: #94BA6C;
-			content: '+';
+			content: '';
 			display: block;
-			height: 2em;
-			line-height: 2em;
+			height: 3em;
 			position: absolute;
-			text-align: center;
 			right: 0;
-			width: 2em;
+			width: 3em;
 		}
 
 	section {
 		bottom: auto;
+		padding: 8%;
 		top: 0;
 	}
+	
+		section h3 {
+			font-size: 26px;
+			margin-bottom: 20px;
+		}
 
 	.pointer-container {
 		display: none;
 	}
 	
-	.more {
-		position: absolute;
-		bottom: 2.2em;
-		left: 0;
-		width: 100%;
-		z-index: 13;
+	.icon-arrow {
+		color: #D16565;
+		font-size: 10px;
 	}
-		
-	
 }
 
-	
+@media screen and (max-width: 400px) {	
+
+	body { 
+		font-size: 13px;	
+	}
+}

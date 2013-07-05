@@ -74,7 +74,7 @@ function theDeets() {
 	}
 	details.toggleClass('shown').animate({
 		bottom: bot
-	});
+	}, 600);
 
 	// IE8 can't handle the plus to X transition, so use minus instead
 	if ($('html').hasClass('lt-ie9')) {
