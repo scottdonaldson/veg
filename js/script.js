@@ -79,7 +79,7 @@ function theDeets() {
 		bottom: bot
 	}, 600, function(){
 		if (details.hasClass('shown')) {
-			_gaq.push(['_trackEvent', 'Clicks', 'Click', 'Opened "About" Text'])
+			_gaq.push(['_trackEvent', 'Click', 'Opened "About" Text'])
 		}
 	});
 	
@@ -297,7 +297,7 @@ $('.restaurant-group').click(function(){
 			theSmallDescription($this);
 		}
 		
-		_gaq.push(['_trackEvent', 'Clicks', 'Click', $this.next().find('h3 a').text()]);
+		_gaq.push(['_trackEvent', 'Click', $this.next().find('h3 a').text()]);
 	}
 });
 
