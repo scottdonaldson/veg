@@ -2,6 +2,9 @@ var header = $('header'),
 	breakPoint = 600,
 	delay = 500;
 
+// GA tracking
+var _gaq = _gaq || [];
+
 $(window).load(function(){
 	$('.restaurant-group').each(function(){
 		$(this).delay(4 * delay * Math.random() + 1000).animate({
@@ -74,7 +77,12 @@ function theDeets() {
 	}
 	details.toggleClass('shown').animate({
 		bottom: bot
-	}, 600);
+	}, 600, function(){
+		if (details.hasClass('shown')) {
+			_gaq.push(['_trackEvent', 'Clicks', 'Click', 'Opened "About" Text'])
+		}
+	});
+	
 
 	// IE8 can't handle the plus to X transition, so use minus instead
 	if ($('html').hasClass('lt-ie9')) {
@@ -125,6 +133,10 @@ function openOrHideSame(photo) {
 		}, delay);
 	}
 
+	$('html, body').animate({
+		scrollTop: photo.offset().top + 0.5 * photo.height()
+	}, delay);
+
 	photo.toggleClass('mobile-active').next().show().siblings('section').hide();
 	photo.parent().toggleClass('opened').animate({
 		height: newHeight
@@ -156,6 +168,10 @@ function openSameRow(photo, theOpen) {
 		});
 	});
 
+	$('html, body').animate({
+		scrollTop: photo.offset().top + 0.5 * photo.height()
+	}, delay);
+
 	setTimeout(function() {
 		photo.next().show().siblings('section').hide();
 		photo.parent().animate({
@@ -179,6 +195,10 @@ function openDifferentRow(photo, theOpen) {
 	pointer.css({
 		left: photo.offset().left + 0.5 * (photo.width() - pointer.width())
 	});
+
+	$('html, body').animate({
+		scrollTop: photo.offset().top + 0.5 * photo.height() - $('section:visible').height()
+	}, delay);
 
 	theOpen.removeClass('mobile-active').parent().removeClass('opened').animate({
 		height: theOpen.parent().height() - theOpen.outerHeight()
@@ -213,6 +233,10 @@ function smallScreenShow(photo) {
 	photo.addClass('mobile-active');
 	photo.parent().addClass('opened').siblings('.row').removeClass('opened');
 	photo.next().prepend(pointer);
+
+	$('html, body').animate({
+		scrollTop: photo.offset().top + 0.5 * photo.height() - $('section:visible').height()
+	}, delay);
 
 	photo.animate({
 		marginBottom: photo.next().outerHeight()
@@ -256,17 +280,24 @@ function theSmallDescription(photo) {
 
 $('.restaurant-group').click(function(){
 	if (!happening) {
+		var $this = $(this);
 		if (details.hasClass('shown')) {
 			theDeets();
 		}
 
 		if ($(window).width() > breakPoint) {
-			theDescription($(this));
+			if ($this.parent().hasClass('last')) {
+				$('html, body').animate({
+					scrollTop: $(document).height()
+				}, 2 * delay);
+			}
+			theDescription($this);
 		} else {
 			// small screens here
-			theSmallDescription($(this));
+			theSmallDescription($this);
 		}
 		
+		_gaq.push(['_trackEvent', 'Clicks', 'Click', $this.next().find('h3 a').text()]);
 	}
 });
 

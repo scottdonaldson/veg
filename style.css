@@ -334,7 +334,7 @@ h2 {
 	bottom: -600px;
 	position: absolute;
 	margin: 0 10%;
-	padding: 3% 6%;
+	padding: 4% 6%;
 	z-index: 9;
 }
 
@@ -350,7 +350,7 @@ section {
 	bottom: 0;
 	display: none;
 	position: absolute;
-	padding: 5% 10% 3% 10%;
+	padding: 4% 10% 3% 10%;
 	left: 0;
 	z-index: 1;
 }
@@ -567,6 +567,7 @@ section {
 	
 	.details {
 		margin: 0% 6%;
+		padding: 6%;
 	}
 	
 		.details img {
